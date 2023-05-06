@@ -1,0 +1,24 @@
+package udv.compi;
+
+import java_cup.runtime.*;
+
+class Parser;
+
+terminal LLA, LLC, CA, CC, DP, COMMA, COMILLA;
+terminal String VAL, ID;
+terminal String NUM;
+
+non terminal S, L, LP, V;
+
+start with S;
+
+S ::= LLA L LLC {: System.out.println("Cadena aceptada"); :};
+
+L ::= L COMMA LP {: System.out.println("hola, soy el valor de la recursividad"); :}
+	|LP{: System.out.println("hola, soy el primer valor"); :};
+
+LP ::= ID DP V
+	|VAL DP V;
+
+V ::= VAL:v {: System.out.print(v + ", "); :}
+	|NUM:n {: System.out.print(n + ", "); :};
